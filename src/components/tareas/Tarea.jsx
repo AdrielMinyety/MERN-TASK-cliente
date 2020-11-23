@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, Fragment} from 'react';
 
 // Context --
 import proyectoContext from '../../context/proyectos/proyectoContext';
@@ -34,45 +34,48 @@ export default function Tarea({tarea}) {
     }
     
     return (
-        <li className="tarea sombra">
-           <p className="m-0 font-weight-bold text-muted">{tarea.nombre}</p>
+        <Fragment>
+            <li className="tarea sombra">
+            <p className="m-0 font-weight-bold text-muted">{tarea.nombre}</p>
 
-           <div className="estado">
-                {tarea.estado
-                ?
-                    (
-                        <button
-                            type="button"
-                            onClick={() => cambiarEstado(tarea)}
-                            className="completo"
-                        >completo
-                        </button>
-                    )    
-                :
-                    (
-                        <button
-                            type="button"
-                            onClick={() => cambiarEstado(tarea)}
-                            className="incompleto"
-                        >Incompleto
-                        </button>
-                    )    
-                }
-           </div>
+            <div className="estado">
+                    {tarea.estado
+                    ?
+                        (
+                            <button
+                                type="button"
+                                onClick={() => cambiarEstado(tarea)}
+                                className="completo"
+                            >completo
+                            </button>
+                        )    
+                    :
+                        (
+                            <button
+                                type="button"
+                                onClick={() => cambiarEstado(tarea)}
+                                className="incompleto"
+                            >Incompleto
+                            </button>
+                        )    
+                    }
+            </div>
 
-           <div className="acciones">
-                <button
-                    onClick={() => handleClickEditar(tarea)}
-                    type="button"
-                    className="btn btn-primario"
-                ><i className="fas fa-pencil-alt"></i></button>
+            <div className="acciones">
+                    <button
+                        onClick={() => handleClickEditar(tarea)}
+                        type="button"
+                        className="btn btn-primario"
+                    ><i className="fas fa-pencil-alt"></i></button>
 
-                <button
-                    onClick={() => handleClickEliminar(tarea._id)}
-                    type="button"
-                    className="btn btn-secundario"
-                ><i className="fas fa-eraser"></i></button>
-           </div>
-        </li>
+                    <button
+                        onClick={() => handleClickEliminar(tarea._id)}
+                        type="button"
+                        className="btn btn-secundario"
+                    ><i className="fas fa-eraser"></i></button>
+            </div>
+            </li>
+            <small className="text-muted text-center">{tarea.creado}</small>
+        </Fragment>
     )
 }
